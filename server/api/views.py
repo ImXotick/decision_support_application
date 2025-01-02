@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics, status
-from .searializers import UserSerializer
 from .searializers import UserSerializer, CriteriaSerializer, CompanySerializer, AHPInputSerializer, PrometheeInputSerializer, WSMInputSerializer, TopsisInputSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Criteria, Company
