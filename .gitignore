@@ -1,0 +1,65 @@
+# ========== Frontend (React) ==========
+
+# Node.js dependencies
+client/node_modules/
+client/build/
+
+# Production build output (for React)
+client/build/
+
+# Test coverage
+/coverage
+
+# Miscellaneous IDE/editor files
+.DS_Store
+*.log
+
+# Environment files (you can set up environment-specific variables)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# npm logs
+npm-debug.log*
+
+# Yarn logs (if using Yarn)
+yarn-debug.log*
+yarn-error.log*
+
+# ========== Backend (Django) ==========
+# Virtual environment
+server/.venv/
+server/backend/settings.py
+
+# Python cache files
+*.pyc
+__pycache__/
+
+# Django-related files
+db.sqlite3           # SQLite database (if used)
+*.sqlite3            # Other SQLite files if used
+*.log                # Django logs
+
+# Coverage reports (if using pytest-cov or similar tools)
+*.coverage
+
+# .env (if using dotenv or other environment management tools)
+server/.env
+
+# __pycache__ (another cache directory for Python files)
+server/__pycache__/
+
+# Miscellaneous IDE/editor files for the backend
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ========== Other Common Files ==========
+
+# VSCode workspace files
+.vscode/
+
+# Other environment or project-specific files
+*.env

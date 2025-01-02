@@ -1,0 +1,20 @@
+{
+  "primary": "rgb(32, 43, 48)",
+  "secondary": "rgb(53, 63, 68)",
+  "tertiary": "rgb(75, 84, 89)",
+  "background": "rgb(255, 255, 255)",
+  "onBackground": "rgb(32, 43, 48)",
+  "border": "rgb(123, 130, 133)",
+  "surface": "rgb(227, 229, 229)",
+  "error": "rgb(254, 67, 54)",
+  "success": "rgb(109, 149, 136)",
+  "highlight": "rgb(174, 178, 180)",
+  "elevation": {
+    "level0": "transparent",
+    "level1": "rgb(200, 203, 204)",
+    "level2": "rgb(227, 229, 229)",
+    "level3": "rgb(123, 130, 133)",
+    "level4": "rgb(99, 107, 110)",
+    "level5": "rgb(53, 63, 68)"
+  }
+}
