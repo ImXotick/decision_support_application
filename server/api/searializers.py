@@ -74,6 +74,10 @@ class WSMInputSerializer(serializers.Serializer):
         child=serializers.FloatField(),
         required=True
     )
+    criteria = serializers.ListField(
+        child=serializers.DictField(),
+        required=True
+    )
     companies = serializers.ListField(
         child=serializers.DictField(),
         required=True
@@ -88,6 +92,10 @@ class WSMInputSerializer(serializers.Serializer):
 class TopsisInputSerializer(serializers.Serializer):
     weights = serializers.ListField(
         child=serializers.FloatField(),
+        required=True
+    )
+    criteria = serializers.ListField(
+        child=serializers.DictField(),
         required=True
     )
     switches = serializers.ListField(

@@ -26,6 +26,7 @@ export const getCriteria = async () => {
 
 export const getTopsisResults = async ({
   weights,
+  criteria,
   switches,
   tables,
   companies,
@@ -33,6 +34,7 @@ export const getTopsisResults = async ({
   try {
     const res = await api.post("/api/topsis/", {
       weights,
+      criteria,
       switches,
       tables,
       companies,
@@ -45,12 +47,14 @@ export const getTopsisResults = async ({
 
 export const getWSMResults = async ({
   weights,
+  criteria,
   tables,
   companies,
 }: WSMPostProps) => {
   try {
     const res = await api.post("/api/wsm/", {
       weights,
+      criteria,
       tables,
       companies,
     });

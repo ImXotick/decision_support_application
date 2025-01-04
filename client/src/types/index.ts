@@ -137,12 +137,13 @@ export type AHPPostProps = {
 
 export type TopisPostProps = {
   weights: number[];
+  criteria: ICriteria[];
   switches?: boolean[];
   tables?: number[][];
   companies: ICompany[];
 };
 
-export type WSMPostProps = Omit<TopisPostProps, "switches" | "criteria">;
+export type WSMPostProps = Omit<TopisPostProps, "switches">;
 
 export type PrometheePostProps = {
   weights: number[];

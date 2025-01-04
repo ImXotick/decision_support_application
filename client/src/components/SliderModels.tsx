@@ -78,12 +78,14 @@ const SliderModels = ({
         if (oneSlide) {
           const results: TopsisResult[] = await getTopsisResults({
             weights: Object.values(weights).flat(),
+            criteria: criteria,
             companies,
           });
           setResults(results);
         } else {
           const results: TopsisResult[] = await getTopsisResults({
             weights: Object.values(weights).flat(),
+            criteria: criteria,
             switches: Object.values(switches).flat(),
             tables: lastTables,
             companies,
@@ -109,12 +111,14 @@ const SliderModels = ({
         if (oneSlide) {
           const results: WSMResult[] = await getWSMResults({
             weights: Object.values(weights).flat(),
+            criteria: criteria,
             companies,
           });
           setResults(results);
         } else {
           const results: WSMResult[] = await getWSMResults({
             weights: Object.values(weights).flat(),
+            criteria: criteria,
             tables: lastTables,
             companies,
           });

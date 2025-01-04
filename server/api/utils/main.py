@@ -25,6 +25,7 @@ def calculate_wsm(data):
     # Extract the data from the dictionary
     weights = data['weights']
     companies = data['companies']
+    criteria = data['criteria']
 
     if 'tables' in data:
         tables = data['tables']
@@ -54,7 +55,7 @@ def calculate_wsm(data):
         return results
     
     else:
-        criteria_keys = [criterion['key'] for criterion in companies[0]['criteria']]
+        criteria_keys = [criterion['key'] for criterion in criteria]
 
         tables = []
         for company in companies:
@@ -95,6 +96,7 @@ def calculate_wsm(data):
 def calculate_topsis(data):
     weights = np.array(data['weights'])
     companies = np.array(data['companies'])
+    criteria = np.array(data['criteria'])
 
     if 'tables' and 'switches' in data:
         tables = np.array(data['tables'])
@@ -118,7 +120,7 @@ def calculate_topsis(data):
         return results
     
     else: 
-        criteria_keys = [criterion['key'] for criterion in companies[0]['criteria']]
+        criteria_keys = [criterion['key'] for criterion in criteria]
 
         company_tables = []
         for company in companies:
