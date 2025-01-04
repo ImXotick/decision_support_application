@@ -19,6 +19,7 @@ const SliderModels = ({
   criteria,
   companies,
   switcher = false,
+  oneSlide = false,
 }: WeightSliderProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [tables, setTables] = useState<number[][]>([]);
@@ -74,13 +75,21 @@ const SliderModels = ({
     setLoading(true);
     if (method.label === "Topsis") {
       try {
-        const results: TopsisResult[] = await getTopsisResults({
-          weights: Object.values(weights).flat(),
-          switches: Object.values(switches).flat(),
-          tables: lastTables,
-          companies,
-        });
-        setResults(results);
+        if (oneSlide) {
+          const results: TopsisResult[] = await getTopsisResults({
+            weights: Object.values(weights).flat(),
+            companies,
+          });
+          setResults(results);
+        } else {
+          const results: TopsisResult[] = await getTopsisResults({
+            weights: Object.values(weights).flat(),
+            switches: Object.values(switches).flat(),
+            tables: lastTables,
+            companies,
+          });
+          setResults(results);
+        }
       } catch {
         alert("Something went wrong, please check your values.");
       } finally {
@@ -97,12 +106,20 @@ const SliderModels = ({
       }
     } else {
       try {
-        const results: WSMResult[] = await getWSMResults({
-          weights: Object.values(weights).flat(),
-          tables: lastTables,
-          companies,
-        });
-        setResults(results);
+        if (oneSlide) {
+          const results: WSMResult[] = await getWSMResults({
+            weights: Object.values(weights).flat(),
+            companies,
+          });
+          setResults(results);
+        } else {
+          const results: WSMResult[] = await getWSMResults({
+            weights: Object.values(weights).flat(),
+            tables: lastTables,
+            companies,
+          });
+          setResults(results);
+        }
       } catch {
         alert("Something went wrong, please check your values.");
       } finally {
@@ -171,45 +188,48 @@ const SliderModels = ({
           <SwiperButton
             currentSlide={currentSlide}
             checker={companies.length}
+            oneSlide={oneSlide}
+            onSubmit={onSubmit}
           />
         </SwiperSlide>
-        {companies.map((company) => (
-          <SwiperSlide key={company.id} className="w-full p-3">
-            <h1 className="font-bold text-lg pb-5">
-              Rate criteria for {company.label}
-            </h1>
-            {criteria.map((criterion, second_index) => (
-              <div key={criterion.id}>
-                <Disclosure>
-                  <DisclosureButton className="flex items-center text-md font-medium gap-2">
-                    <p className="hover:text-primary">{criterion.label}</p>
-                  </DisclosureButton>
-                  <DisclosurePanel
-                    transition
-                    className="origin-top transition duration-200 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0 text-sm text-black/80"
-                  >
-                    {criterion.description}
-                  </DisclosurePanel>
-                </Disclosure>
-                <div className="flex items-center">
-                  <SliderRange
-                    label={criterion.label}
-                    value={criteria_values[criterion.label]}
-                    onValueChange={onCriteriaChange}
-                    maxStep={10}
-                    step={1}
-                  />
+        {!oneSlide &&
+          companies.map((company) => (
+            <SwiperSlide key={company.id} className="w-full p-3">
+              <h1 className="font-bold text-lg pb-5">
+                Rate criteria for {company.label}
+              </h1>
+              {criteria.map((criterion, second_index) => (
+                <div key={criterion.id}>
+                  <Disclosure>
+                    <DisclosureButton className="flex items-center text-md font-medium gap-2">
+                      <p className="hover:text-primary">{criterion.label}</p>
+                    </DisclosureButton>
+                    <DisclosurePanel
+                      transition
+                      className="origin-top transition duration-200 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0 text-sm text-black/80"
+                    >
+                      {criterion.description}
+                    </DisclosurePanel>
+                  </Disclosure>
+                  <div className="flex items-center">
+                    <SliderRange
+                      label={criterion.label}
+                      value={criteria_values[criterion.label]}
+                      onValueChange={onCriteriaChange}
+                      maxStep={10}
+                      step={1}
+                    />
+                  </div>
+                  {second_index !== criteria.length - 1 && <Separator />}
                 </div>
-                {second_index !== criteria.length - 1 && <Separator />}
-              </div>
-            ))}
-            <SwiperButton
-              currentSlide={currentSlide}
-              checker={companies.length}
-              onSubmit={onSubmit}
-            />
-          </SwiperSlide>
-        ))}
+              ))}
+              <SwiperButton
+                currentSlide={currentSlide}
+                checker={companies.length}
+                onSubmit={onSubmit}
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
       <ResultsModal
         open={open}

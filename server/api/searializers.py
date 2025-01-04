@@ -82,7 +82,7 @@ class WSMInputSerializer(serializers.Serializer):
         child=serializers.ListField(
             child=serializers.FloatField()
         ),
-        required=True
+        required=False
     )
 
 class TopsisInputSerializer(serializers.Serializer):
@@ -92,13 +92,13 @@ class TopsisInputSerializer(serializers.Serializer):
     )
     switches = serializers.ListField(
         child=serializers.BooleanField(),
-        required=True
+        required=False
     )
     tables = serializers.ListField(
         child=serializers.ListField(
             child=serializers.FloatField()
         ),
-        required=True
+        required=False
     )
     companies = serializers.ListField(
         child=serializers.DictField(),

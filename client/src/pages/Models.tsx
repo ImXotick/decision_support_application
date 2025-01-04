@@ -21,6 +21,7 @@ const Models = () => {
   const [method, setMethod] = useState<IMethod>(methods[0]);
   const [loading, setLoading] = useState<boolean>(false);
   const [tableEnabled, setTableEnabled] = useState<boolean>(false);
+  const [oneSlide, setOneSlide] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,26 +52,49 @@ const Models = () => {
             dataItem={method}
             onItemChange={setMethod}
           />
-          <div className="w-full flex items-center mt-5 gap-5">
-            <h1 className="font-bold text-lg">Show data:</h1>
-            <Checkbox
-              checked={tableEnabled}
-              onChange={setTableEnabled}
-              className="group block size-6 rounded border border-border bg-white data-[checked]:bg-primary"
-            >
-              <svg
-                className="stroke-white opacity-0 group-data-[checked]:opacity-100"
-                viewBox="0 0 14 14"
-                fill="none"
+          <div className="w-full flex flex-col mt-5 gap-5">
+            <div className="flex gap-5 items-center">
+              <h1 className="font-bold text-lg">Show data:</h1>
+              <Checkbox
+                checked={tableEnabled}
+                onChange={setTableEnabled}
+                className="group block size-6 rounded border border-border bg-white data-[checked]:bg-primary"
               >
-                <path
-                  d="M3 8L6 11L11 3.5"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Checkbox>
+                <svg
+                  className="stroke-white opacity-0 group-data-[checked]:opacity-100"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                >
+                  <path
+                    d="M3 8L6 11L11 3.5"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Checkbox>
+            </div>
+            <div className="flex gap-5 items-center">
+              <h1 className="font-bold text-lg">Use our data:</h1>
+              <Checkbox
+                checked={oneSlide}
+                onChange={setOneSlide}
+                className="group block size-6 rounded border border-border bg-white data-[checked]:bg-primary"
+              >
+                <svg
+                  className="stroke-white opacity-0 group-data-[checked]:opacity-100"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                >
+                  <path
+                    d="M3 8L6 11L11 3.5"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Checkbox>
+            </div>
           </div>
         </Card>
 
@@ -98,12 +122,14 @@ const Models = () => {
             criteria={criteria}
             companies={selectedCompanies}
             switcher={true}
+            oneSlide={oneSlide}
           />
         ) : method.label === "WSM" ? (
           <SliderModels
             method={method}
             criteria={criteria}
             companies={selectedCompanies}
+            oneSlide={oneSlide}
           />
         ) : (
           <SlideAndInputModels

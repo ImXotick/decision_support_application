@@ -65,6 +65,7 @@ export type WeightSliderProps = {
   criteria: ICriteria[];
   companies: ICompany[];
   switcher?: boolean;
+  oneSlide?: boolean;
 };
 
 export type SliderProps = {
@@ -98,6 +99,7 @@ export type SwiperButtonProps = {
   checker: number;
   onSubmit?: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
   onNext?: () => boolean;
+  oneSlide?: boolean;
 };
 
 export type SlideAndInputProps = {
@@ -135,8 +137,8 @@ export type AHPPostProps = {
 
 export type TopisPostProps = {
   weights: number[];
-  switches: boolean[];
-  tables: number[][];
+  switches?: boolean[];
+  tables?: number[][];
   companies: ICompany[];
 };
 
