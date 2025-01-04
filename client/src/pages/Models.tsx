@@ -147,4 +147,3 @@ const Models = () => {
 };
 
 export default Models;
-//className="flex flex-col max-w-[800px]"

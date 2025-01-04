@@ -13,14 +13,11 @@ const SwiperButton = ({
 
   const handleSlideChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     if ((currentSlide === checker && onSubmit) || (oneSlide && onSubmit)) {
-      console.log("ran1");
       onSubmit(e);
     } else if (onNext) {
-      console.log("ran2");
       const result = onNext();
       if (result) swiper.slideNext();
     } else {
-      console.log("ran3");
       swiper.slideNext();
     }
   };
