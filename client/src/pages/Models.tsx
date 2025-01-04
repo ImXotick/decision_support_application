@@ -84,8 +84,8 @@ const Models = () => {
           </Card>
         )}
 
-        {selectedCompanies.length <= 1 ? (
-          <div>Select at least two companies</div>
+        {selectedCompanies.length <= 2 ? (
+          <div>Select at least three companies</div>
         ) : method.label === "AHP" ? (
           <InputModels
             method={method}
