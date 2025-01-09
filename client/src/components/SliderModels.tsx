@@ -104,7 +104,7 @@ const SliderModels = ({
         //Reset all values
         resetSwitches();
         resetCriteria();
-        resetWeights();
+        //resetWeights();
         setTables([]);
         setCurrentSlide(0);
 
@@ -135,7 +135,7 @@ const SliderModels = ({
         //Reset all values
         resetSwitches();
         resetCriteria();
-        resetWeights();
+        //resetWeights();
         setTables([]);
         setCurrentSlide(0);
 
