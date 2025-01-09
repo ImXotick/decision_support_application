@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { WeightSliderProps, TopsisResult, WSMResult } from "../types";
 import {
   Disclosure,
@@ -27,6 +27,9 @@ const SliderModels = ({
   const [open, setOpen] = useState<boolean>(false);
   const [results, setResults] = useState<TopsisResult[] | WSMResult[]>();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const swiperRef = useRef<any>(null);
+
   // Handles sliders/switches states
   const [switches, onSwitchChange, resetSwitches] = useSliderState<boolean>(
     criteria,
@@ -47,6 +50,9 @@ const SliderModels = ({
     resetWeights();
     setTables([]);
     setCurrentSlide(0);
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(0);
+    }
   }, [criteria, method, companies]);
 
   // Handles next slide
@@ -95,7 +101,6 @@ const SliderModels = ({
       } catch {
         alert("Something went wrong, please check your values.");
       } finally {
-        setCurrentSlide(0);
         //Reset all values
         resetSwitches();
         resetCriteria();
@@ -133,7 +138,7 @@ const SliderModels = ({
         resetWeights();
         setTables([]);
         setCurrentSlide(0);
-        setCurrentSlide(0);
+
         setLoading(false);
         handleOpen();
       }
@@ -154,6 +159,9 @@ const SliderModels = ({
         onSlideChange={handleNext}
         allowTouchMove={false}
         className="w-full"
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
       >
         <SwiperSlide key={"First"} className="w-full p-3">
           <h1 className="font-bold text-lg pb-5">Rate criteria weights</h1>
